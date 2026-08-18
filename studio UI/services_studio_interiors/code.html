@@ -1,0 +1,413 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Our Expertise - Studio Interiors</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#ebe1d4",
+                    "primary-fixed-dim": "#c9c6c1",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#ebe1d4",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#c9c6c1",
+                    "on-primary-fixed": "#1c1c18",
+                    "on-secondary-fixed": "#1c1b19",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#e6e2de",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed-variant": "#474743",
+                    "surface-tint": "#5f5e5a",
+                    "on-background": "#1f1b13",
+                    "primary-container": "#f5f2ec",
+                    "inverse-surface": "#353027",
+                    "on-tertiary-container": "#836a45",
+                    "on-tertiary-fixed": "#281800",
+                    "surface-container-low": "#fcf2e5",
+                    "secondary-fixed": "#e6e2de",
+                    "surface": "#fff8f2",
+                    "outline": "#787770",
+                    "inverse-on-surface": "#f9efe2",
+                    "tertiary-fixed-dim": "#e1c296",
+                    "primary": "#5f5e5a",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#e5e2dc",
+                    "surface-bright": "#fff8f2",
+                    "on-surface-variant": "#474741",
+                    "on-primary-container": "#6f6e69",
+                    "on-surface": "#1f1b13",
+                    "surface-container": "#f6ece0",
+                    "tertiary-container": "#fff0e0",
+                    "secondary": "#605e5b",
+                    "on-secondary-fixed-variant": "#484644",
+                    "tertiary-fixed": "#ffddb0",
+                    "surface-dim": "#e2d9cc",
+                    "background": "#fff8f2",
+                    "secondary-fixed-dim": "#cac6c2",
+                    "on-secondary-container": "#666461",
+                    "on-tertiary-fixed-variant": "#594321",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#725a36",
+                    "surface-container-high": "#f1e7da",
+                    "outline-variant": "#c8c7be"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-page": "64px",
+                    "element-gap": "24px",
+                    "section-gap": "160px",
+                    "margin-mobile": "24px",
+                    "unit": "8px",
+                    "grid-gutter": "32px",
+                    "grid-columns": "12"
+            },
+            "fontFamily": {
+                    "caption": [
+                            "Inter"
+                    ],
+                    "headline-sm": [
+                            "EB Garamond"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "EB Garamond"
+                    ],
+                    "display-lg": [
+                            "EB Garamond"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "label-caps": [
+                            "Inter"
+                    ],
+                    "display-lg-mobile": [
+                            "EB Garamond"
+                    ],
+                    "display-xl": [
+                            "EB Garamond"
+                    ]
+            },
+            "fontSize": {
+                    "caption": [
+                            "13px",
+                            {
+                                    "lineHeight": "18px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-sm": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-lg": [
+                            "20px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "300"
+                            }
+                    ],
+                    "headline-md": [
+                            "42px",
+                            {
+                                    "lineHeight": "52px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg": [
+                            "64px",
+                            {
+                                    "lineHeight": "72px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "26px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "11px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.15em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "42px",
+                            {
+                                    "lineHeight": "48px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-xl": [
+                            "84px",
+                            {
+                                    "lineHeight": "92px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 300,
+            'GRAD' 0,
+            'opsz' 24;
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Image Reveal Animation */
+        .reveal-image-container {
+            overflow: hidden;
+        }
+        .reveal-image {
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: scale(1.05);
+        }
+        .reveal-image.revealed {
+            transform: scale(1);
+        }
+
+        /* Custom Hover Underline */
+        .hover-underline-bronze {
+            position: relative;
+            display: inline-block;
+        }
+        .hover-underline-bronze::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #A68A62;
+            transition: width 0.4s ease;
+        }
+        .hover-underline-bronze:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-surface-dim selection:text-on-surface">
+<!-- Navigation (TopNavBar) -->
+<header class="fixed top-0 w-full z-50 transition-all duration-500 ease-in-out" id="main-nav">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-page py-6">
+<!-- Brand Logo -->
+<a class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg tracking-tighter text-primary hover:opacity-70 transition-all duration-500 ease-in-out" href="#">
+                STUDIO
+            </a>
+<!-- Desktop Links -->
+<nav class="hidden md:flex items-center gap-element-gap">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-500 ease-in-out hover:opacity-70 uppercase tracking-widest" href="#">Portfolio</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-500 ease-in-out hover:opacity-70 uppercase tracking-widest" href="#">Studio</a>
+<a class="font-label-caps text-label-caps text-primary border-b border-primary pb-1 transition-all duration-500 ease-in-out hover:opacity-70 uppercase tracking-widest" href="#">Services</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-500 ease-in-out hover:opacity-70 uppercase tracking-widest" href="#">Press</a>
+</nav>
+<!-- Trailing Action -->
+<div class="flex items-center gap-6">
+<a class="hidden md:inline-block font-label-caps text-label-caps text-on-surface border border-outline px-6 py-3 uppercase tracking-widest hover:bg-surface-tint hover:text-surface-bright transition-colors duration-300" href="#">
+                    Inquire
+                </a>
+<button class="md:hidden text-primary hover:opacity-70 transition-opacity">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-32 md:pt-48">
+<!-- Hero Section -->
+<section class="px-margin-mobile md:px-margin-page mb-section-gap">
+<div class="max-w-4xl">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-6 uppercase tracking-widest">Practice Areas</p>
+<h1 class="font-display-xl text-display-lg-mobile md:text-display-xl text-on-surface mb-8">OUR EXPERTISE</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl font-light">
+                    We approach every space as a bespoke architectural canvas. Our services are tailored to discerning clients who demand meticulous attention to detail, material purity, and an editorial aesthetic across diverse typologies.
+                </p>
+</div>
+</section>
+<!-- Services Container -->
+<div class="flex flex-col gap-section-gap mb-section-gap">
+<!-- Service 1: Residential -->
+<section class="px-margin-mobile md:px-margin-page group">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-grid-gutter items-center">
+<!-- Text Block (Left, 4 cols) -->
+<div class="md:col-span-4 flex flex-col order-2 md:order-1 relative z-10 md:-mr-12">
+<div class="bg-surface-container-lowest p-8 md:p-12 border border-outline-variant/30 shadow-sm">
+<div class="flex items-baseline gap-4 mb-6">
+<span class="font-label-caps text-label-caps text-on-surface-variant/50">01</span>
+<h2 class="font-headline-md text-headline-sm md:text-headline-md text-on-surface">Residential</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                                Bespoke private estates and luxury apartments designed for quiet living. We curate every surface, focusing on natural light, noble materials, and seamless spatial flow to create sanctuaries of profound calm.
+                            </p>
+<h3 class="font-label-caps text-label-caps text-on-surface mb-4 border-b border-outline-variant/30 pb-2">Deliverables</h3>
+<ul class="flex flex-col gap-3 font-body-md text-body-md text-on-surface-variant mb-8">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] mt-1 text-tertiary">check</span>
+                                    Full Architectural Interior Design
+                                </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] mt-1 text-tertiary">check</span>
+                                    Custom Millwork &amp; Cabinetry
+                                </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] mt-1 text-tertiary">check</span>
+                                    Lighting &amp; Art Curation
+                                </li>
+</ul>
+<a class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest hover-underline-bronze flex items-center gap-2 w-fit" href="#">
+                                View Projects
+                                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Image Block (Right, 8 cols) -->
+<div class="md:col-span-8 order-1 md:order-2 reveal-image-container">
+<img alt="Residential Interior Design" class="w-full h-[60vh] md:h-[80vh] object-cover reveal-image revealed" data-alt="A serene, high-end residential living room emphasizing minimalist architectural design. The space features large floor-to-ceiling windows letting in soft, natural daylight. The color palette consists of pristine whites, warm ivory, and deep charcoal accents. Furniture includes a low-profile linen sofa and a monolithic travertine coffee table, embodying a quiet luxury aesthetic. High-key lighting, editorial interior photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVPTkNdItZWSYoBQsDy3b25j9Q69XwLSnLxT_jjiDWiEV5LuHVoAyoyHmLSGfxp7U-rUDHTGuvQdj6ih_ZYJFULGAL5Ep7ZKH-M63pAuCryg5_RhV3e7Hp0HYTqxJ1_cahnQv2dDg8Yrq_K2kR-XQwcxQejZeeH1gXQgagDHkoQaifhzDj1NAgyXsRsxaVhFUJ7TgbiM1tvvgAfy6SZIp3u0HJs_roD-PQgoOVaxN0KvG9vVXFF-t1">
+</div>
+</div>
+</section>
+<!-- Service 2: Commercial -->
+<section class="px-margin-mobile md:px-margin-page group">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-grid-gutter items-center">
+<!-- Image Block (Left, 7 cols) -->
+<div class="md:col-span-7 reveal-image-container">
+<img alt="Commercial Interior Design" class="w-full h-[60vh] md:h-[70vh] object-cover reveal-image revealed" data-alt="A sophisticated commercial workspace design featuring a minimalist boardroom. The room has acoustic slatted wood walls in a warm taupe finish and a sleek, long bronze meeting table surrounded by minimal leather chairs. The lighting is deliberate and architectural, casting soft, focused beams. The overall aesthetic is expensive, corporate yet highly curated, maintaining an editorial, light-mode design palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6sEQx4TXHWYx_Hpa7DKrtwvBb-GsbYCjfmkOeFGg7MWpthsxEcoqyo-kpeMcyLyjIgL5DFxACeOKfvD4QR0mKxEOUbhQdd-kXQ4xKsRv7afJk-gvwIjiaS_YEAdRK47IuVROav4xie4n4q30tY6DN1DZe7k-iP9Xek35DCsSTChjy5esnEtR4CEU8LmjWNwurY5nMwFJOwjLkBPNHyX78YVfrL-M3PAAiIWEci_uAzEX5ZcPVXeKq">
+</div>
+<!-- Spacer (1 col) -->
+<div class="hidden md:block md:col-span-1"></div>
+<!-- Text Block (Right, 4 cols) -->
+<div class="md:col-span-4 flex flex-col">
+<div class="flex items-baseline gap-4 mb-6">
+<span class="font-label-caps text-label-caps text-on-surface-variant/50">02</span>
+<h2 class="font-headline-md text-headline-sm md:text-headline-md text-on-surface">Commercial</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                            Executive suites, boutique retail, and flagship offices. We design commercial environments that articulate brand identity through structural elegance, ensuring operational efficiency without sacrificing aesthetic rigor.
+                        </p>
+<h3 class="font-label-caps text-label-caps text-on-surface mb-4 border-b border-outline-variant/30 pb-2">Deliverables</h3>
+<ul class="flex flex-col gap-3 font-body-md text-body-md text-on-surface-variant mb-8">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] mt-1 text-tertiary">check</span>
+                                Spatial Identity &amp; Branding
+                            </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] mt-1 text-tertiary">check</span>
+                                FF&amp;E Procurement
+                            </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] mt-1 text-tertiary">check</span>
+                                Workplace Strategy
+                            </li>
+</ul>
+<a class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest hover-underline-bronze flex items-center gap-2 w-fit" href="#">
+                            Explore Commercial
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#1C1B19] text-surface-container-lowest flex flex-col gap-section-gap px-margin-mobile md:px-margin-page py-20 w-full mt-section-gap">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12">
+<!-- Brand & Copyright -->
+<div class="flex flex-col gap-8">
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-surface-container-lowest tracking-tighter">
+                    STUDIO
+                </h2>
+<p class="font-body-md text-body-md text-on-surface-variant/50 max-w-sm">
+                    © 2024 STUDIO INTERIORS. ARCHITECTURAL PURITY.
+                </p>
+</div>
+<!-- Footer Links -->
+<div class="flex gap-16">
+<div class="flex flex-col gap-4">
+<p class="font-label-caps text-label-caps text-on-surface-variant/50 uppercase tracking-widest">Social</p>
+<a class="font-body-md text-body-md text-surface-container-lowest hover:text-tertiary-fixed-dim transition-colors duration-300" href="#">Instagram</a>
+<a class="font-body-md text-body-md text-surface-container-lowest hover:text-tertiary-fixed-dim transition-colors duration-300" href="#">LinkedIn</a>
+<a class="font-body-md text-body-md text-surface-container-lowest hover:text-tertiary-fixed-dim transition-colors duration-300" href="#">Pinterest</a>
+</div>
+<div class="flex flex-col gap-4">
+<p class="font-label-caps text-label-caps text-on-surface-variant/50 uppercase tracking-widest">Info</p>
+<a class="font-body-md text-body-md text-surface-container-lowest hover:text-tertiary-fixed-dim transition-colors duration-300" href="#">Journal</a>
+<a class="font-body-md text-body-md text-surface-container-lowest hover:text-tertiary-fixed-dim transition-colors duration-300" href="#">Terms</a>
+<a class="font-body-md text-body-md text-surface-container-lowest hover:text-tertiary-fixed-dim transition-colors duration-300" href="#">Privacy</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Scroll listener for TopNavBar
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-surface-container-lowest/90', 'backdrop-blur-md', 'border-b', 'border-outline-variant/30');
+                nav.classList.remove('bg-transparent');
+            } else {
+                nav.classList.remove('bg-surface-container-lowest/90', 'backdrop-blur-md', 'border-b', 'border-outline-variant/30');
+                nav.classList.add('bg-transparent');
+            }
+        });
+
+        // Image Reveal Intersection Observer
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: "0px 0px -10% 0px"
+        });
+
+        document.querySelectorAll('.reveal-image').forEach(img => {
+            revealObserver.observe(img);
+        });
+    </script>
+
+
+</body></html>

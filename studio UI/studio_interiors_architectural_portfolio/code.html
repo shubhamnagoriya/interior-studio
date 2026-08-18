@@ -1,0 +1,344 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>STUDIO | Architecture &amp; Interiors</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#ebe1d4",
+                        "primary-fixed-dim": "#c9c6c1",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#ebe1d4",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#c9c6c1",
+                        "on-primary-fixed": "#1c1c18",
+                        "on-secondary-fixed": "#1c1b19",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#e6e2de",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#474743",
+                        "surface-tint": "#5f5e5a",
+                        "on-background": "#1f1b13",
+                        "primary-container": "#f5f2ec",
+                        "inverse-surface": "#353027",
+                        "on-tertiary-container": "#836a45",
+                        "on-tertiary-fixed": "#281800",
+                        "surface-container-low": "#fcf2e5",
+                        "secondary-fixed": "#e6e2de",
+                        "surface": "#fff8f2",
+                        "outline": "#787770",
+                        "inverse-on-surface": "#f9efe2",
+                        "tertiary-fixed-dim": "#e1c296",
+                        "primary": "#5f5e5a",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#e5e2dc",
+                        "surface-bright": "#fff8f2",
+                        "on-surface-variant": "#474741",
+                        "on-primary-container": "#6f6e69",
+                        "on-surface": "#1f1b13",
+                        "surface-container": "#f6ece0",
+                        "tertiary-container": "#fff0e0",
+                        "secondary": "#605e5b",
+                        "on-secondary-fixed-variant": "#484644",
+                        "tertiary-fixed": "#ffddb0",
+                        "surface-dim": "#e2d9cc",
+                        "background": "#fff8f2",
+                        "secondary-fixed-dim": "#cac6c2",
+                        "on-secondary-container": "#666461",
+                        "on-tertiary-fixed-variant": "#594321",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#725a36",
+                        "surface-container-high": "#f1e7da",
+                        "outline-variant": "#c8c7be"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-page": "64px",
+                        "element-gap": "24px",
+                        "section-gap": "160px",
+                        "margin-mobile": "24px",
+                        "unit": "8px",
+                        "grid-gutter": "32px",
+                        "grid-columns": "12"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "headline-sm": ["EB Garamond"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["EB Garamond"],
+                        "display-lg": ["EB Garamond"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "display-lg-mobile": ["EB Garamond"],
+                        "display-xl": ["EB Garamond"]
+                    },
+                    "fontSize": {
+                        "caption": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-sm": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "body-lg": ["20px", { "lineHeight": "32px", "fontWeight": "300" }],
+                        "headline-md": ["42px", { "lineHeight": "52px", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["42px", { "lineHeight": "48px", "fontWeight": "400" }],
+                        "display-xl": ["84px", { "lineHeight": "92px", "letterSpacing": "-0.02em", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .reveal-up { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-up.active { opacity: 1; transform: translateY(0); }
+        .image-reveal { clip-path: inset(100% 0 0 0); transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .image-reveal.active { clip-path: inset(0 0 0 0); }
+        .nav-scrolled { @apply backdrop-blur-md border-b border-outline-variant/30 bg-surface/90; }
+        .link-underline { position: relative; }
+        .link-underline::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 0; background-color: #A68A62; transition: width 0.4s ease; }
+        .link-underline:hover::after { width: 100%; }
+        
+        /* Disable TopNavBar Bottom Border on initial load per design guidance */
+        .top-nav-initial { border-bottom: none !important; }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary-container selection:text-primary antialiased font-body-md text-body-md overflow-x-hidden">
+<!-- JSON: TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-page py-6 transition-all duration-500 ease-in-out bg-transparent dark:bg-transparent top-nav-initial" id="top-nav">
+<div class="font-display-lg text-display-lg tracking-tighter text-on-surface dark:text-primary-fixed leading-none">
+            STUDIO
+        </div>
+<div class="hidden md:flex gap-element-gap items-center font-label-caps text-label-caps">
+<a class="text-on-surface hover:opacity-70 transition-all duration-500 link-underline" href="#">Portfolio</a>
+<a class="text-on-surface hover:opacity-70 transition-all duration-500 link-underline" href="#">Studio</a>
+<a class="text-on-surface hover:opacity-70 transition-all duration-500 link-underline" href="#">Services</a>
+<a class="text-on-surface hover:opacity-70 transition-all duration-500 link-underline" href="#">Press</a>
+</div>
+<div class="hidden md:block">
+<a class="font-label-caps text-label-caps px-6 py-3 border border-outline text-on-surface hover:bg-primary hover:text-on-primary transition-colors duration-500" href="#">
+                Inquire
+            </a>
+</div>
+<!-- Mobile Menu Trigger -->
+<button class="md:hidden flex items-center justify-center p-2 text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0 scale-105" id="hero-img-container">
+<div class="bg-cover bg-center w-full h-full transform transition-transform duration-[20s] ease-out hover:scale-110" data-alt="Cinematic, wide-angle interior photography of a luxurious, modern architectural living space. High-ceilinged room with floor-to-ceiling windows letting in soft, diffused natural daylight. The design aesthetic is 'Quiet Luxury' with editorial minimalism. Materials include raw concrete, warm oak wood, and light beige stone. Furniture is minimal, low-profile, and expensive-looking in shades of ivory and taupe. The mood is serene, serene, and sophisticated, emphasizing architectural purity and empty space over ornamentation." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBy4et5UBRWmC0ObwbDbqJ3Oa-05TEJZelegc9uK59rXNnItmzoN2E37g94BvdgZ-JqsT1CIB4f0xzPIEdwyTpSkvvUdfTx18xUC9g01rtQE0zUEAYVU6x1-56KB0Kkb5zJybm3CDSao06-diAdgFyRXwIpYgLlkFXzbnTs8WwhvvuvW-Ogu4hkZonwTOMuZkQzuP8Qt5kdvLwx_LtqU13ZxzNggwAA9TsXOKaxk9kWk82goB4pU3KT')"></div>
+<div class="absolute inset-0 bg-black/20"></div>
+</div>
+<!-- Content -->
+<div class="relative z-10 text-center px-margin-mobile w-full max-w-5xl mx-auto flex flex-col items-center mt-20">
+<h1 class="font-display-xl text-display-lg-mobile md:text-display-xl text-on-primary mb-element-gap reveal-up">Spaces Designed to Be Lived In.</h1>
+<p class="font-body-lg text-body-lg text-on-primary/80 max-w-2xl mb-12 reveal-up" style="transition-delay: 200ms;">Contemporary interiors shaped by architecture, materiality and timeless design.</p>
+<div class="flex flex-col sm:flex-row gap-6 reveal-up" style="transition-delay: 400ms;">
+<a class="font-label-caps text-label-caps px-8 py-4 border border-on-primary text-on-primary hover:bg-on-primary hover:text-primary transition-colors duration-500" href="#">
+                        Explore Our Work
+                    </a>
+<a class="font-label-caps text-label-caps px-8 py-4 flex items-center justify-center text-on-primary link-underline" href="#">
+                        Discover the Studio
+                    </a>
+</div>
+</div>
+<!-- Bottom Label -->
+<div class="absolute bottom-margin-mobile md:bottom-margin-page left-margin-mobile md:left-margin-page z-10 reveal-up" style="transition-delay: 600ms;">
+<span class="font-label-caps text-label-caps text-on-primary tracking-[0.2em]">RESIDENCE 01 — MUMBAI</span>
+</div>
+</section>
+<!-- Studio Statement -->
+<section class="py-section-gap px-margin-mobile md:px-margin-page bg-surface">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-grid-gutter">
+<div class="md:col-span-3 mb-12 md:mb-0 reveal-up">
+<h2 class="font-label-caps text-label-caps text-outline tracking-[0.2em]">THE STUDIO</h2>
+</div>
+<div class="md:col-span-9 md:col-start-4">
+<h3 class="font-headline-md text-headline-sm md:text-headline-md text-on-surface mb-8 reveal-up max-w-4xl">WE CREATE INTERIORS WITH A DISTINCT SENSE OF PLACE.</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl reveal-up" style="transition-delay: 200ms;">
+                        Our practice is rooted in the belief that an interior should be a natural extension of its architecture. We approach each project with a quiet restraint, favoring pure materials, considered proportions, and a meticulous attention to detail over fleeting trends. The result is spaces that feel both elevated and entirely unpretentious—environments designed to age gracefully alongside those who inhabit them.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Selected Work (Asymmetrical Grid) -->
+<section class="py-section-gap px-margin-mobile md:px-margin-page bg-surface-container-highest">
+<div class="max-w-7xl mx-auto mb-20 flex flex-col md:flex-row justify-between items-end gap-8">
+<div class="reveal-up">
+<h2 class="font-label-caps text-label-caps text-outline tracking-[0.2em] mb-4">SELECTED WORK</h2>
+<h3 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface max-w-2xl">Spaces That Speak Without Saying a Word.</h3>
+</div>
+<div class="reveal-up">
+<a class="font-label-caps text-label-caps link-underline pb-1 flex items-center gap-2" href="#">View All Projects <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-x-grid-gutter max-w-7xl mx-auto">
+<!-- Project 1 (Large, spanning 8 cols) -->
+<div class="md:col-span-8 group cursor-pointer">
+<div class="relative overflow-hidden mb-6 bg-surface-dim h-[60vh] md:h-[80vh] image-reveal">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-[10s] group-hover:scale-105" data-alt="High-end architectural photography of a serene, minimalist living room in a luxury Mumbai residence. The scene features a massive custom-designed raw stone coffee table, a low-slung ivory linen sofa, and floor-to-ceiling sheer linen curtains softly filtering bright daylight. A singular, sculptural bronze lighting fixture hangs above. The aesthetic emphasizes 'Quiet Luxury', neutral tones, empty space, and precise architectural lines. Shot in natural, editorial light." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtaX4RaZLK3sEauXvMC1DGCGKXIH_uXpICQfAYzuZsE4_wW8FJzIAC7XH02MrVYec7wN1NgpoAFICf8izRF5AF8yzIHsFpIdyTpkxE2Kt7KvOJ4J9JJUay6iIgfxX1ui7m5Aiel6t3ZcZcWO5C5Vy0aPURBRpimNsOJFN3TCtUxyS_57K4y6KZl7scSFApSgJ7ces9OoDI_f-hZm5o74CuXtSrnqpnCn9GFnUd38fUdX0lCcgdqdAz')"></div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-700"></div>
+</div>
+<div class="flex justify-between items-start reveal-up">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Residence No. 01</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Mumbai · Residential</p>
+</div>
+<span class="font-caption text-caption text-outline">2026</span>
+</div>
+</div>
+<!-- Project 2 (Smaller, spanning 4 cols, offset down) -->
+<div class="md:col-span-4 md:mt-48 group cursor-pointer">
+<div class="relative overflow-hidden mb-6 bg-surface-dim h-[50vh] image-reveal" style="transition-delay: 200ms;">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-[10s] group-hover:scale-105" data-alt="Close-up detail shot of high-end interior materiality. Focus on the intersection of a honed travertine stone countertop, custom milled dark walnut cabinetry, and a minimalist brushed brass faucet. The lighting is dramatic yet soft, highlighting the textures and grain of the materials. The mood is sophisticated, tactile, and expensive, fitting a 'Quiet Luxury' design portfolio." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAbPxT8agQc2s203AFF2sw4Zc_zY-afZHhlvOdXtf3Q8I2A5vL5mB1Ql_fdlXEL7nLar6TIKh4XOEK7n4__H8mhOl1fCPmTKuvW02zNIathBradxbP7LJKoM0uLkv2zq4o3mLTN3TWaiMWoUM7OK473nrCUAZRvxI4O45SXfJdVDWSOMtj2LGlvx6IUN1fxuZBMSTk3DOEn9p09EwOE3jePIuE_WKx9DgYk8JbS_r911Q4TNBKJLTnO')"></div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-700"></div>
+</div>
+<div class="flex justify-between items-start reveal-up">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">The Alpine Chalet</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Swiss Alps · Hospitality</p>
+</div>
+<span class="font-caption text-caption text-outline">2025</span>
+</div>
+</div>
+<!-- Project 3 (Medium, centeredish) -->
+<div class="md:col-span-6 md:col-start-4 group cursor-pointer mt-12 md:mt-24">
+<div class="relative overflow-hidden mb-6 bg-surface-dim h-[60vh] image-reveal">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-[10s] group-hover:scale-105" data-alt="Editorial interior shot of a sophisticated dining room. Features a long, monolithic blackened steel dining table surrounded by curved, sculptural wooden chairs. In the background, a large-scale abstract monochromatic artwork hangs on a textured plaster wall. The lighting is moody and architectural, emphasizing shadows and form. The design speaks to minimalist, contemporary luxury and refined restraint." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCH9FXHnwO301Ty_7UUCPJDGYvgfh8_Mg5IAbl8p-DFpcAGvI9SRbskk1oun6SMqH7QxNfuNPRFRwKXx0k5AYbNy-43Da1p-OWOYXYUIjsrEeXh7NPScY9xuK8zUsBLUql8LRt5_Jl719AgaL1TLXa5vU0F0DwxjkQJ66bt3fWCTgTNiNZ9P4xY4Kom6a87chqm0Yo8-tk6tHS6dBUq6u1bSOQKtg9UXUw02QFqm8NYcqPWlBIVHTLE')"></div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-700"></div>
+</div>
+<div class="flex justify-between items-start reveal-up">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Gallery Loft</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant">New York · Residential</p>
+</div>
+<span class="font-caption text-caption text-outline">2024</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Full Width Visual Break -->
+<section class="relative h-[80vh] w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="bg-cover bg-center w-full h-full fixed-bg" data-alt="A striking, symmetrical architectural shot looking down a minimalist corridor in a high-end interior. The walls are finished in a smooth, warm grey lime wash plaster. Natural light spills across the polished concrete floor from an unseen skylight, creating dramatic geometric shadows. At the far end, a simple, raw wood bench sits as a focal point. The image embodies serenity, structural purity, and the 'Quiet Luxury' aesthetic." id="parallax-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBkYCh5jbixKIGLR_X2Z4ViXCp9ON93ijrfGbNV2JA36dx9htw-cRe9dbfNxZfhVcJw3a_zKZXgdFVpozYH9mytfH9ig6_2VC_OF3_ijOyeGQTYVNAsqgk-HOZKSZIX77T7rXNluJRpZ1XYpCe6D3_NqoiRpv8n0yspHjt9nIr_BpqyIrGwkgiqrV6gMk-1V_Wyt-WLtaXWKFlD1gf8zkg7Hm2dQTxGQWohAJQnKqlFShW18SrP7ebK')"></div>
+<div class="absolute inset-0 bg-black/40"></div>
+</div>
+<div class="relative z-10 text-center px-margin-mobile max-w-4xl mx-auto reveal-up">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-primary mb-8 leading-tight">
+                    "GOOD DESIGN IS FELT BEFORE IT IS EXPLAINED."
+                </h2>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-section-gap px-margin-mobile md:px-margin-page bg-inverse-surface text-inverse-on-surface flex flex-col items-center justify-center text-center">
+<div class="max-w-3xl reveal-up">
+<h2 class="font-display-xl text-display-lg-mobile md:text-display-xl mb-12">LET'S CREATE SOMETHING TIMELESS.</h2>
+<a class="font-label-caps text-label-caps px-10 py-5 border border-outline-variant text-inverse-on-surface hover:bg-surface-container-lowest hover:text-on-surface transition-colors duration-500 inline-flex items-center gap-4" href="#">
+                    START A CONVERSATION <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</section>
+</main>
+<!-- JSON: Footer -->
+<footer class="bg-inverse-surface dark:bg-surface-container-lowest text-inverse-on-surface dark:text-on-surface flex flex-col gap-section-gap px-margin-page py-20 w-full fade-in transition-opacity">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 w-full max-w-7xl mx-auto">
+<div class="md:col-span-6">
+<div class="font-display-lg text-display-lg text-inverse-on-surface dark:text-on-surface mb-8">
+                    STUDIO
+                </div>
+</div>
+<div class="md:col-span-6 grid grid-cols-2 gap-8 font-body-md text-body-md">
+<div class="flex flex-col gap-4">
+<a class="text-on-surface-variant hover:text-tertiary-fixed-dim transition-colors duration-300" href="#">Instagram</a>
+<a class="text-on-surface-variant hover:text-tertiary-fixed-dim transition-colors duration-300" href="#">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-tertiary-fixed-dim transition-colors duration-300" href="#">Pinterest</a>
+</div>
+<div class="flex flex-col gap-4">
+<a class="text-on-surface-variant hover:text-tertiary-fixed-dim transition-colors duration-300" href="#">Journal</a>
+<a class="text-on-surface-variant hover:text-tertiary-fixed-dim transition-colors duration-300" href="#">Terms</a>
+<a class="text-on-surface-variant hover:text-tertiary-fixed-dim transition-colors duration-300" href="#">Privacy</a>
+</div>
+</div>
+</div>
+<div class="w-full max-w-7xl mx-auto border-t border-outline-variant/30 pt-8 mt-auto flex justify-between items-center text-caption font-caption text-on-surface-variant">
+<p>© 2024 STUDIO INTERIORS. ARCHITECTURAL PURITY.</p>
+</div>
+</footer>
+<script>
+        // Scroll Interactions
+        document.addEventListener('DOMContentLoaded', () => {
+            const topNav = document.getElementById('top-nav');
+            const reveals = document.querySelectorAll('.reveal-up, .image-reveal');
+            
+            // Nav Scroll Effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    topNav.classList.add('nav-scrolled');
+                    topNav.classList.remove('top-nav-initial');
+                } else {
+                    topNav.classList.remove('nav-scrolled');
+                    topNav.classList.add('top-nav-initial');
+                }
+            });
+
+            // Intersection Observer for Reveal Animations
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealObserver.observe(reveal);
+            });
+
+            // Trigger initial reveals if already in viewport
+            setTimeout(() => {
+                reveals.forEach(reveal => {
+                    const rect = reveal.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                        reveal.classList.add('active');
+                    }
+                });
+            }, 100);
+            
+            // Simple Parallax for fixed background on scroll
+            const parallaxBg = document.getElementById('parallax-bg');
+            if(parallaxBg) {
+                window.addEventListener('scroll', () => {
+                    const scrollPos = window.scrollY;
+                    const sectionTop = parallaxBg.parentElement.parentElement.offsetTop;
+                    // Only apply if section is somewhat in view to save performance
+                    if(scrollPos > sectionTop - window.innerHeight && scrollPos < sectionTop + window.innerHeight) {
+                         const yPos = (scrollPos - sectionTop) * 0.3;
+                         parallaxBg.style.transform = `translateY(${yPos}px)`;
+                    }
+                });
+            }
+        });
+    </script>
+</body></html>

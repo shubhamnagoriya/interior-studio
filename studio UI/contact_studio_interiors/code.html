@@ -1,0 +1,285 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Contact | Studio Interiors</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#e2d9cc",
+                        "on-background": "#1f1b13",
+                        "surface-container": "#f6ece0",
+                        "secondary-fixed-dim": "#cac6c2",
+                        "on-secondary-fixed-variant": "#484644",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#474741",
+                        "on-tertiary-fixed-variant": "#594321",
+                        "secondary-container": "#e6e2de",
+                        "on-tertiary-container": "#836a45",
+                        "on-tertiary-fixed": "#281800",
+                        "on-error": "#ffffff",
+                        "tertiary": "#725a36",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f9efe2",
+                        "tertiary-fixed": "#ffddb0",
+                        "on-secondary-fixed": "#1c1b19",
+                        "primary-fixed": "#e5e2dc",
+                        "primary-container": "#f5f2ec",
+                        "on-primary-fixed-variant": "#474743",
+                        "tertiary-container": "#fff0e0",
+                        "tertiary-fixed-dim": "#e1c296",
+                        "surface-variant": "#ebe1d4",
+                        "background": "#fff8f2",
+                        "inverse-primary": "#c9c6c1",
+                        "surface-container-high": "#f1e7da",
+                        "on-primary-fixed": "#1c1c18",
+                        "surface-bright": "#fff8f2",
+                        "on-primary-container": "#6f6e69",
+                        "surface-container-highest": "#ebe1d4",
+                        "on-surface": "#1f1b13",
+                        "outline-variant": "#c8c7be",
+                        "on-secondary": "#ffffff",
+                        "outline": "#787770",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#353027",
+                        "primary": "#5f5e5a",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#605e5b",
+                        "primary-fixed-dim": "#c9c6c1",
+                        "surface": "#fff8f2",
+                        "secondary-fixed": "#e6e2de",
+                        "surface-container-low": "#fcf2e5",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#5f5e5a",
+                        "on-secondary-container": "#666461"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-page": "64px",
+                        "element-gap": "24px",
+                        "section-gap": "160px",
+                        "grid-columns": "12",
+                        "margin-mobile": "24px",
+                        "unit": "8px",
+                        "grid-gutter": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["EB Garamond", "serif"],
+                        "display-lg": ["EB Garamond", "serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-md": ["EB Garamond", "serif"],
+                        "display-lg-mobile": ["EB Garamond", "serif"],
+                        "caption": ["Inter", "sans-serif"],
+                        "label-caps": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "display-xl": ["EB Garamond", "serif"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "body-lg": ["20px", { "lineHeight": "32px", "fontWeight": "300" }],
+                        "headline-md": ["42px", { "lineHeight": "52px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["42px", { "lineHeight": "48px", "fontWeight": "400" }],
+                        "caption": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "display-xl": ["84px", { "lineHeight": "92px", "letterSpacing": "-0.02em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .input-underline {
+            border: none;
+            border-bottom: 1px solid #787770;
+            background: transparent;
+            border-radius: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .input-underline:focus {
+            outline: none;
+            box-shadow: none;
+            border-bottom-color: #A68A62;
+        }
+        select.input-underline {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23787770' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0 center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+    </style>
+</head>
+<body class="bg-primary-container text-on-background min-h-screen flex flex-col font-body-md text-body-md antialiased overflow-x-hidden selection:bg-tertiary selection:text-white">
+<!-- TopNavBar Component -->
+<nav class="docked full-width top-0 sticky backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center px-margin-mobile md:px-margin-page py-6 w-full z-50 transition-all duration-700 ease-in-out bg-transparent">
+<a class="font-display-lg text-[24px] tracking-tighter text-on-background dark:text-on-primary-fixed" href="#">AESTHETIC STUDIO</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-tertiary transition-colors duration-500" href="#">Portfolio</a>
+<a class="text-on-background border-b border-tertiary pb-1 font-label-caps text-label-caps hover:text-tertiary transition-colors duration-500" href="#">Studio</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-tertiary transition-colors duration-500" href="#">Services</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-tertiary transition-colors duration-500" href="#">Press</a>
+</div>
+<button class="hidden md:block font-label-caps text-label-caps border border-on-background px-6 py-3 hover:bg-on-background hover:text-primary-container transition-colors duration-300">
+            Inquire
+        </button>
+<!-- Mobile menu toggle (simplified for layout purposes) -->
+<button class="md:hidden text-on-background">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow">
+<!-- Hero & Contact Section (Asymmetrical Layout) -->
+<section class="pt-24 pb-section-gap px-margin-mobile md:px-margin-page w-full max-w-[1920px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-x-grid-gutter">
+<!-- Left Column: Typography & Contact Info -->
+<div class="md:col-span-5 md:col-start-1 flex flex-col justify-start z-10 relative">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-8 uppercase leading-tight max-w-[12ch]">
+                        LET'S TALK ABOUT YOUR SPACE.
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-16 max-w-md">
+                        We take on a limited number of commissions annually to ensure uncompromising quality across all phases of design.
+                    </p>
+<div class="flex flex-col gap-12 pt-8 border-t border-outline-variant/50 max-w-sm">
+<div>
+<h3 class="font-label-caps text-label-caps text-outline mb-2">STUDIO HQ</h3>
+<address class="not-italic font-body-md text-body-md text-on-background">
+                                1200 Architecture Way,<br>
+                                Suite 400,<br>
+                                New York, NY 10012
+                            </address>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps text-outline mb-2">DIRECT INQUIRIES</h3>
+<a class="block font-body-md text-body-md text-on-background hover:text-tertiary transition-colors mb-1" href="mailto:hello@studiointeriors.com">
+                                hello@studiointeriors.com
+                            </a>
+<a class="block font-body-md text-body-md text-on-background hover:text-tertiary transition-colors" href="tel:+12125550198">
+                                +1 212 555 0198
+                            </a>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps text-outline mb-2">SOCIAL</h3>
+<a class="inline-block font-body-md text-body-md text-on-background border-b border-tertiary hover:border-on-background transition-colors pb-0.5" href="#">
+                                Instagram
+                            </a>
+</div>
+</div>
+</div>
+<!-- Right Column: Form Canvas (Overlapping slightly) -->
+<div class="md:col-span-6 md:col-start-7 relative z-20">
+<div class="bg-surface-container p-8 md:p-12 shadow-sm relative">
+<form class="flex flex-col gap-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-2 relative">
+<label class="font-label-caps text-label-caps text-outline absolute -top-4 left-0" for="name">NAME</label>
+<input class="input-underline w-full font-body-md text-body-md text-on-background py-2 placeholder-on-surface-variant/50 transition-colors" id="name" name="name" placeholder="Jane Doe" required="" type="text">
+</div>
+<div class="flex flex-col gap-2 relative">
+<label class="font-label-caps text-label-caps text-outline absolute -top-4 left-0" for="email">EMAIL</label>
+<input class="input-underline w-full font-body-md text-body-md text-on-background py-2 placeholder-on-surface-variant/50 transition-colors" id="email" name="email" placeholder="jane@example.com" required="" type="email">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+<div class="flex flex-col gap-2 relative">
+<label class="font-label-caps text-label-caps text-outline absolute -top-4 left-0" for="phone">PHONE (OPTIONAL)</label>
+<input class="input-underline w-full font-body-md text-body-md text-on-background py-2 placeholder-on-surface-variant/50 transition-colors" id="phone" name="phone" placeholder="+1 (555) 000-0000" type="tel">
+</div>
+<div class="flex flex-col gap-2 relative">
+<label class="font-label-caps text-label-caps text-outline absolute -top-4 left-0" for="location">PROJECT LOCATION</label>
+<input class="input-underline w-full font-body-md text-body-md text-on-background py-2 placeholder-on-surface-variant/50 transition-colors" id="location" name="location" placeholder="City, State" type="text">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+<div class="flex flex-col gap-2 relative">
+<label class="font-label-caps text-label-caps text-outline absolute -top-4 left-0" for="type">PROJECT TYPE</label>
+<select class="input-underline w-full font-body-md text-body-md text-on-background py-2 transition-colors cursor-pointer appearance-none rounded-none" id="type" name="type">
+<option class="text-on-surface-variant/50" disabled="" selected="" value="">Select type...</option>
+<option value="residential">Residential</option>
+<option value="commercial">Commercial</option>
+<option value="hospitality">Hospitality</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div class="flex flex-col gap-2 relative">
+<label class="font-label-caps text-label-caps text-outline absolute -top-4 left-0" for="budget">APPROX. BUDGET</label>
+<select class="input-underline w-full font-body-md text-body-md text-on-background py-2 transition-colors cursor-pointer appearance-none rounded-none" id="budget" name="budget">
+<option class="text-on-surface-variant/50" disabled="" selected="" value="">Select range...</option>
+<option value="50k-100k">$50k - $100k</option>
+<option value="100k-250k">$100k - $250k</option>
+<option value="250k-500k">$250k - $500k</option>
+<option value="500k+">$500k+</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col gap-2 mt-4 relative">
+<label class="font-label-caps text-label-caps text-outline absolute -top-4 left-0" for="message">PROJECT DETAILS</label>
+<textarea class="input-underline w-full font-body-md text-body-md text-on-background py-2 placeholder-on-surface-variant/50 transition-colors resize-none" id="message" name="message" placeholder="Tell us about your space, timeline, and vision..." required="" rows="4"></textarea>
+</div>
+<div class="pt-4 flex justify-end">
+<button class="font-label-caps text-label-caps text-on-background border border-on-background px-8 py-4 hover:bg-on-background hover:text-primary-container transition-all duration-300 tracking-[0.2em]" type="submit">
+                                    SEND INQUIRY
+                                </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- Architectural Image Block (Breathing Room) -->
+<section class="pb-section-gap px-margin-mobile md:px-margin-page w-full max-w-[1920px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-grid-gutter">
+<div class="md:col-span-8 md:col-start-3 relative h-[60vh] md:h-[80vh] overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-[1.03]" data-alt="A serene, high-end interior architecture detail shot. Warm morning sunlight rakes across heavily textured, beige travertine stone walls and floor. The composition is highly minimalist and editorial, capturing a quiet corner of a luxury residential space with deep shadows and soft highlights. The color palette is restricted to ivory, warm beige, and subtle bronze tones. Shot on medium format film, extremely sharp, soft lighting, quiet luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO1MxhkMWegKNyukWwtEFeaTsm9aHM3euoOzh5NWGnW8HpRIPuEMDcS96Wmsap9E6Ou_PjM1ywnfD50JB59kWMHk8dxt7E0nXaxim1SYhZJSkIehKwzdaUEG8EDyzlg6BZp0-7dGnxOkTxVUqEsPaPnX1EYeO_B4sfwXwY_oOpvdYfaBq0svmGSIPPp4qH7uhSAo6HiqCX5KU4h4Fy81E8g0roSk2qY-wqz3fL80FNSMTSLQHnEl1c">
+<!-- Ghost Layer Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim/40 to-transparent pointer-events-none"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="bg-inverse-surface dark:bg-surface-container-lowest text-inverse-on-surface dark:text-on-surface full-width flex flex-col md:flex-row justify-between items-start px-margin-mobile md:px-margin-page py-section-gap w-full opacity-80 hover:opacity-100 transition-opacity">
+<div class="mb-8 md:mb-0">
+<h2 class="font-display-lg text-headline-md text-inverse-on-surface dark:text-on-surface mb-4">AESTHETIC STUDIO</h2>
+<p class="font-body-md text-body-md text-inverse-on-surface/70 dark:text-on-surface/70">© 2024 Aesthetic Studio. All Rights Reserved.</p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4 max-w-md">
+<a class="text-secondary-fixed-dim font-label-caps text-label-caps hover:text-tertiary-fixed transition-colors duration-300" href="#">Portfolio</a>
+<a class="text-tertiary-fixed font-label-caps text-label-caps hover:text-tertiary-fixed transition-colors duration-300" href="#">Studio</a>
+<a class="text-secondary-fixed-dim font-label-caps text-label-caps hover:text-tertiary-fixed transition-colors duration-300" href="#">Services</a>
+<a class="text-secondary-fixed-dim font-label-caps text-label-caps hover:text-tertiary-fixed transition-colors duration-300" href="#">Press</a>
+<a class="text-secondary-fixed-dim font-label-caps text-label-caps hover:text-tertiary-fixed transition-colors duration-300" href="#">Terms</a>
+<a class="text-secondary-fixed-dim font-label-caps text-label-caps hover:text-tertiary-fixed transition-colors duration-300" href="#">Privacy</a>
+</div>
+</footer>
+<script>
+        // Simple scroll behavior for TopNav backdrop
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-primary-container/80');
+                nav.classList.remove('bg-transparent');
+            } else {
+                nav.classList.remove('bg-primary-container/80');
+                nav.classList.add('bg-transparent');
+            }
+        });
+    </script>
+</body></html>
