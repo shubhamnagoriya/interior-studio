@@ -1,5 +1,4 @@
 import { JournalPost } from '@/types/journal';
-import { journalData } from '@/data/journal';
 import { fetchWPData, getWordPressBaseUrl } from './client';
 import { WPPost } from '@/types/wordpress';
 import { decodeHtmlEntities, cleanHtml, extractFeaturedImage } from './utils';
@@ -9,7 +8,8 @@ const DEFAULT_JOURNAL_IMAGE =
 
 export async function getJournalPosts(): Promise<JournalPost[]> {
   if (!getWordPressBaseUrl()) {
-    return journalData;
+    console.warn('[WordPress API] Base URL not configured.');
+    return [];
   }
 
   const wpPosts = await fetchWPData<WPPost[]>({
@@ -37,5 +37,6 @@ export async function getJournalPosts(): Promise<JournalPost[]> {
     });
   }
 
-  return journalData;
+  return [];
 }
+

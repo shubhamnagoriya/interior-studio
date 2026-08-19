@@ -16,6 +16,9 @@ import {
   getNextProject,
 } from '@/lib/wordpress/projects';
 
+export const revalidate = 60;
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   const projects = await getProjects();
   return projects.map((p) => ({ slug: p.slug }));

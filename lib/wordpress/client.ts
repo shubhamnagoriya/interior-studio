@@ -2,10 +2,14 @@ import { WPFetchOptions } from '@/types/wordpress';
 
 /**
  * Retrieves the WordPress Base URL from environment variables.
- * Checks NEXT_PUBLIC_WORDPRESS_URL first, falling back to NEXT_PUBLIC_WORDPRESS_API_URL.
+ * Prioritizes NEXT_PUBLIC_WORDPRESS_URL as required.
  */
 export function getWordPressBaseUrl(): string | null {
-  const envUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL || process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+  const envUrl =
+    process.env.NEXT_PUBLIC_WORDPRESS_URL ||
+    process.env.WORDPRESS_URL ||
+    process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+
   if (!envUrl || envUrl.trim() === '' || envUrl.includes('YOUR-WORDPRESS-DOMAIN.com')) {
     return null;
   }
@@ -23,6 +27,7 @@ export async function fetchWPData<T>({
 }: WPFetchOptions): Promise<T | null> {
   const baseUrl = getWordPressBaseUrl();
   if (!baseUrl) {
+    console.warn('[WordPress API] Missing NEXT_PUBLIC_WORDPRESS_URL environment variable.');
     return null;
   }
 
@@ -45,9 +50,9 @@ export async function fetchWPData<T>({
       });
     }
 
-    // Use AbortController for reliable timeout protection (8 seconds)
+    // Use AbortController for reliable timeout protection (15 seconds)
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 8000);
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
 
     const res = await fetch(url.toString(), {
       next: { revalidate: 60 },
@@ -67,10 +72,11 @@ export async function fetchWPData<T>({
     return (await res.json()) as T;
   } catch (error: any) {
     if (error?.name === 'AbortError') {
-      console.warn(`[WordPress API] Request timed out for endpoint: ${endpoint}`);
+      console.warn(`[WordPress API] Request timed out (15s) for endpoint: ${endpoint}`);
     } else {
       console.warn(`[WordPress API] Connection issue for ${endpoint}:`, error?.message || error);
     }
     return null;
   }
 }
+

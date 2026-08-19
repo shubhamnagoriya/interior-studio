@@ -1,15 +1,7 @@
 import { Testimonial } from '@/types/testimonial';
-import { testimonialsData } from '@/data/testimonials';
 import { fetchWPData, getWordPressBaseUrl } from './client';
 import { WPPost } from '@/types/wordpress';
 import { decodeHtmlEntities, cleanHtml, extractFeaturedImage } from './utils';
-
-/**
- * Returns typed local mock testimonials.
- */
-export async function getLocalTestimonials(): Promise<Testimonial[]> {
-  return [...testimonialsData];
-}
 
 /**
  * Maps raw WordPress Custom Post Type into a clean Testimonial object.
@@ -36,11 +28,12 @@ export function mapWPTestimonial(post: WPPost): Testimonial {
 
 /**
  * Retrieves all testimonials from WordPress REST API (/wp-json/wp/v2/testimonials).
- * Falls back to local data if no WordPress URL is configured or on connection failure.
+ * Returns empty array on error or if no testimonials found to allow graceful UI empty states.
  */
 export async function getTestimonials(): Promise<Testimonial[]> {
   if (!getWordPressBaseUrl()) {
-    return getLocalTestimonials();
+    console.warn('[WordPress API] Base URL not configured.');
+    return [];
   }
 
   const wpTestimonials = await fetchWPData<WPPost[]>({
@@ -48,15 +41,10 @@ export async function getTestimonials(): Promise<Testimonial[]> {
     query: { per_page: 100, status: 'publish' },
   });
 
-  // If fetch failed completely (network/server error), fallback gracefully
-  if (wpTestimonials === null) {
-    return getLocalTestimonials();
-  }
-
-  // If WordPress returned an empty list, return empty array for empty states
-  if (wpTestimonials.length === 0) {
+  if (wpTestimonials === null || wpTestimonials.length === 0) {
     return [];
   }
 
   return wpTestimonials.map((post) => mapWPTestimonial(post));
 }
+

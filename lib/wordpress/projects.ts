@@ -1,5 +1,4 @@
 import { Project } from '@/types/project';
-import { projectsData } from '@/data/projects';
 import { fetchWPData, getWordPressBaseUrl } from './client';
 import { WPPost } from '@/types/wordpress';
 import {
@@ -16,13 +15,6 @@ const DEFAULT_PROJECT_IMAGE =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuAtaX4RaZLK3sEauXvMC1DGCGKXIH_uXpICQfAYzuZsE4_wW8FJzIAC7XH02MrVYec7wN1NgpoAFICf8izRF5AF8yzIHsFpIdyTpkxE2Kt7KvOJ4J9JJUay6iIgfxX1ui7m5Aiel6t3ZcZcWO5C5Vy0aPURBRpimNsOJFN3TCtUxyS_57K4y6KZl7scSFApSgJ7ces9OoDI_f-hZm5o74CuXtSrnqpnCn9GFnUd38fUdX0lCcgdqdAz';
 
 /**
- * Returns typed local mock projects for offline development/fallback.
- */
-export async function getLocalProjects(): Promise<Project[]> {
-  return [...projectsData];
-}
-
-/**
  * Maps raw WordPress Custom Post Type into the exact Project model.
  * Native fields:
  *   title.rendered → title
@@ -31,9 +23,11 @@ export async function getLocalProjects(): Promise<Project[]> {
  *   content.rendered → content
  *   featured image (_embedded['wp:featuredmedia']) → featuredImage
  * ACF fields:
- *   location → location (mapped if available, undefined otherwise)
- *   year → year (mapped if available, undefined otherwise)
- *   gallery → gallery (mapped from acf.photo_gallery.image_gallery or acf.gallery)
+ *   project_location → location
+ *   project_year → year
+ *   design_narrative → designNarrative (using acf.design_narrative)
+ *   photo_gallery → gallery (mapped from photo_gallery.image_gallery or photo_gallery)
+ *   featured_project → featured
  * Categories:
  *   _embedded['wp:term'] → categories ({ id, name, slug }[])
  */
@@ -48,15 +42,11 @@ export function mapWPProject(post: WPPost): Project {
   const categories = extractCategoryObjects(post);
   const primaryCategory = extractPrimaryCategory(post);
 
-  // Exact ACF fields mapping - handles both flat fields and nested groups (e.g. project_details)
-  const details = post.acf?.project_details || post.acf?.projectDetails || {};
-
+  // Exact ACF fields mapping
   const rawLocation =
-    details.project_location ??
-    details.location ??
     post.acf?.project_location ??
     post.acf?.location ??
-    post.acf?.projectLocation ??
+    post.acf?.project_details?.project_location ??
     null;
   const location =
     rawLocation !== null && rawLocation !== undefined && String(rawLocation).trim() !== ''
@@ -64,40 +54,35 @@ export function mapWPProject(post: WPPost): Project {
       : null;
 
   const rawYear =
-    details.project_year ??
-    details.year ??
     post.acf?.project_year ??
     post.acf?.year ??
-    post.acf?.projectYear ??
+    post.acf?.project_details?.project_year ??
     null;
   const year =
     rawYear !== null && rawYear !== undefined && String(rawYear).trim() !== ''
       ? String(rawYear).trim()
       : null;
 
+  // Uses acf.design_narrative as explicitly required
   const rawNarrative =
-    details.design_narrative ??
-    details.narrative ??
     post.acf?.design_narrative ??
     post.acf?.narrative ??
-    post.acf?.designNarrative ??
+    post.acf?.project_details?.design_narrative ??
     null;
   const designNarrative =
     rawNarrative !== null && rawNarrative !== undefined && String(rawNarrative).trim() !== ''
       ? decodeHtmlEntities(String(rawNarrative).trim())
       : null;
 
-  const client = details.client ?? post.acf?.client ? String(details.client || post.acf?.client) : undefined;
-  const rawServices = details.services_provided ?? details.services ?? post.acf?.services_provided ?? post.acf?.services;
+  const client = post.acf?.client ? String(post.acf.client) : undefined;
+  const rawServices = post.acf?.services_provided ?? post.acf?.services;
   const services = Array.isArray(rawServices)
     ? rawServices
-    : typeof rawServices === 'string'
+    : typeof rawServices === 'string' && rawServices.trim() !== ''
     ? rawServices.split('\n').map((s: string) => s.trim()).filter(Boolean)
     : undefined;
 
   const isFeatured = Boolean(
-    details.featured_project ??
-    details.featured ??
     post.acf?.featured_project ??
     post.acf?.featured
   );
@@ -125,11 +110,12 @@ export function mapWPProject(post: WPPost): Project {
 
 /**
  * Retrieves all projects from WordPress REST API (/wp-json/wp/v2/projects).
- * Falls back to local data only if no WordPress URL is configured or on connection failure.
+ * Returns empty array on error or if no projects found to allow graceful UI empty states.
  */
 export async function getProjects(): Promise<Project[]> {
   if (!getWordPressBaseUrl()) {
-    return getLocalProjects();
+    console.warn('[WordPress API] Base URL not configured.');
+    return [];
   }
 
   const wpProjects = await fetchWPData<WPPost[]>({
@@ -137,13 +123,7 @@ export async function getProjects(): Promise<Project[]> {
     query: { per_page: 100, status: 'publish' },
   });
 
-  // If fetch failed completely (network/server error), fallback gracefully
-  if (wpProjects === null) {
-    return getLocalProjects();
-  }
-
-  // If WordPress returned an empty list, return empty array for empty states
-  if (wpProjects.length === 0) {
+  if (wpProjects === null || wpProjects.length === 0) {
     return [];
   }
 
@@ -151,12 +131,11 @@ export async function getProjects(): Promise<Project[]> {
 }
 
 /**
- * Retrieves a single project by slug.
+ * Retrieves a single project by slug from WordPress REST API.
  */
 export async function getProjectBySlug(slug: string): Promise<Project | undefined> {
   if (!getWordPressBaseUrl()) {
-    const local = await getLocalProjects();
-    return local.find((p) => p.slug === slug);
+    return undefined;
   }
 
   const wpProjects = await fetchWPData<WPPost[]>({
@@ -172,11 +151,13 @@ export async function getProjectBySlug(slug: string): Promise<Project | undefine
 }
 
 /**
- * Retrieves featured projects for the homepage.
- * Prioritizes projects with ACF featured: true, or takes the first 3 projects.
+ * Retrieves featured projects for the homepage from live WordPress data.
+ * Prioritizes projects with ACF featured_project: true, or takes the first 3 projects.
  */
 export async function getFeaturedProjects(): Promise<Project[]> {
   const allProjects = await getProjects();
+  if (allProjects.length === 0) return [];
+
   const explicitFeatured = allProjects.filter((p) => p.featured === true);
 
   if (explicitFeatured.length >= 3) {
@@ -200,6 +181,8 @@ export async function getRelatedProjects(
   limit = 2
 ): Promise<Project[]> {
   const projects = await getProjects();
+  if (projects.length === 0) return [];
+
   const filtered = projects.filter(
     (p) => p.slug !== currentSlug && p.category.toLowerCase() === category.toLowerCase()
   );
@@ -228,3 +211,4 @@ export async function getNextProject(currentSlug: string): Promise<Project | und
 
   return projects[currentIndex + 1];
 }
+

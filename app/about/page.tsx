@@ -14,6 +14,8 @@ export const metadata = {
   description: 'Learn about our practice, creative leadership, material philosophy, and architectural design principles.',
 };
 
+export const revalidate = 60;
+
 export default async function AboutPage() {
   const services = await getServices();
 

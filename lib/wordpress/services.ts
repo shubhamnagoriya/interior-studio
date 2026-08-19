@@ -1,5 +1,4 @@
 import { Service } from '@/types/service';
-import { servicesData } from '@/data/services';
 import { fetchWPData, getWordPressBaseUrl } from './client';
 import { WPPost } from '@/types/wordpress';
 import {
@@ -9,12 +8,9 @@ import {
   extractDetailsList,
 } from './utils';
 
-/**
- * Returns typed local mock services.
- */
-export async function getLocalServices(): Promise<Service[]> {
-  return [...servicesData].sort((a, b) => (a.order || 0) - (b.order || 0));
-}
+// Fallback high-resolution architectural image if media is missing
+const DEFAULT_SERVICE_IMAGE =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuAVPTkNdItZWSYoBQsDy3b25j9Q69XwLSnLxT_jjiDWiEV5LuHVoAyoyHmLSGfxp7U-rUDHTGuvQdj6ih_ZYJFULGAL5Ep7ZKH-M63pAuCryg5_RhV3e7Hp0HYTqxJ1_cahnQv2dDg8Yrq_K2kR-XQwcxQejZeeH1gXQgagDHkoQaifhzDj1NAgyXsRsxaVhFUJ7TgbiM1tvvgAfy6SZIp3u0HJs_roD-PQgoOVaxN0KvG9vVXFF-t1';
 
 /**
  * Maps raw WordPress Custom Post Type into a clean Service object.
@@ -25,6 +21,7 @@ export function mapWPService(post: WPPost, index = 0): Service {
   const rawContent = post.content?.rendered || '';
   const cleanDescription = cleanHtml(rawContent) || cleanExcerpt;
   const image = extractFeaturedImage(post);
+  const featuredImage = image || DEFAULT_SERVICE_IMAGE;
   const details = extractDetailsList(post);
 
   return {
@@ -33,7 +30,7 @@ export function mapWPService(post: WPPost, index = 0): Service {
     title: cleanTitle,
     excerpt: cleanExcerpt,
     content: rawContent,
-    featuredImage: image,
+    featuredImage,
     image,
     number: String(index + 1).padStart(2, '0'),
     shortDescription: post.acf?.short_description || cleanExcerpt,
@@ -46,11 +43,12 @@ export function mapWPService(post: WPPost, index = 0): Service {
 
 /**
  * Retrieves all services from WordPress REST API (/wp-json/wp/v2/services).
- * Falls back to local data if no WordPress URL is configured or on connection failure.
+ * Returns empty array on error or if no services found to allow graceful UI empty states.
  */
 export async function getServices(): Promise<Service[]> {
   if (!getWordPressBaseUrl()) {
-    return getLocalServices();
+    console.warn('[WordPress API] Base URL not configured.');
+    return [];
   }
 
   const wpServices = await fetchWPData<WPPost[]>({
@@ -58,13 +56,7 @@ export async function getServices(): Promise<Service[]> {
     query: { per_page: 100, status: 'publish' },
   });
 
-  // If fetch failed completely (network/server error), fallback gracefully
-  if (wpServices === null) {
-    return getLocalServices();
-  }
-
-  // If WordPress returned an empty list, return empty array for empty states
-  if (wpServices.length === 0) {
+  if (wpServices === null || wpServices.length === 0) {
     return [];
   }
 
@@ -74,12 +66,11 @@ export async function getServices(): Promise<Service[]> {
 }
 
 /**
- * Retrieves a single service by slug.
+ * Retrieves a single service by slug from WordPress REST API.
  */
 export async function getServiceBySlug(slug: string): Promise<Service | undefined> {
   if (!getWordPressBaseUrl()) {
-    const local = await getLocalServices();
-    return local.find((s) => s.slug === slug);
+    return undefined;
   }
 
   const wpServices = await fetchWPData<WPPost[]>({
@@ -91,7 +82,6 @@ export async function getServiceBySlug(slug: string): Promise<Service | undefine
     return mapWPService(wpServices[0], 0);
   }
 
-  // Fallback check in local data if not found or on API error
-  const fallback = await getLocalServices();
-  return fallback.find((s) => s.slug === slug);
+  return undefined;
 }
+
