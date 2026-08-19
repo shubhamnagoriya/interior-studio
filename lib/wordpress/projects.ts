@@ -84,7 +84,9 @@ export function mapWPProject(post: WPPost): Project {
 
   const isFeatured = Boolean(
     post.acf?.featured_project ??
-    post.acf?.featured
+    post.acf?.featured ??
+    post.acf?.featuredProject ??
+    post.acf?.project_details?.featured_project
   );
 
   return {
@@ -105,6 +107,7 @@ export function mapWPProject(post: WPPost): Project {
     client,
     services,
     featured: isFeatured,
+    featuredProject: isFeatured,
   };
 }
 
@@ -158,7 +161,9 @@ export async function getFeaturedProjects(): Promise<Project[]> {
   const allProjects = await getProjects();
   if (allProjects.length === 0) return [];
 
-  const explicitFeatured = allProjects.filter((p) => p.featured === true);
+  const explicitFeatured = allProjects.filter(
+    (p) => p.featured === true || p.featuredProject === true
+  );
 
   if (explicitFeatured.length >= 3) {
     return explicitFeatured.slice(0, 3);

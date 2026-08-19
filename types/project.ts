@@ -24,4 +24,5 @@ export interface Project {
   client?: string;
   services?: string[];
   featured?: boolean;
+  featuredProject?: boolean;
 }

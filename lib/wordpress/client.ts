@@ -10,10 +10,20 @@ export function getWordPressBaseUrl(): string | null {
     process.env.WORDPRESS_URL ||
     process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 
-  if (!envUrl || envUrl.trim() === '' || envUrl.includes('YOUR-WORDPRESS-DOMAIN.com')) {
+  if (!envUrl || typeof envUrl !== 'string') {
     return null;
   }
-  return envUrl.trim().replace(/\/+$/, '');
+
+  const cleaned = envUrl
+    .trim()
+    .replace(/^["']|["']$/g, '')
+    .replace(/\/+$/, '');
+
+  if (!cleaned || cleaned === '' || cleaned.includes('YOUR-WORDPRESS-DOMAIN.com')) {
+    return null;
+  }
+
+  return cleaned;
 }
 
 /**
@@ -54,22 +64,32 @@ export async function fetchWPData<T>({
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 15000);
 
-    const res = await fetch(url.toString(), {
+    const fullUrl = url.toString();
+    console.log(`[WordPress API] Requesting: ${fullUrl}`);
+
+    const res = await fetch(fullUrl, {
       next: { revalidate: 60 },
       signal: controller.signal,
       headers: {
         Accept: 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 NextJS/14',
       },
     });
 
     clearTimeout(timeoutId);
 
+    console.log(`[WordPress API] Response HTTP ${res.status} for ${url.pathname}`);
+
     if (!res.ok) {
-      console.warn(`[WordPress API] HTTP ${res.status} ${res.statusText} at ${url.pathname}`);
+      console.warn(`[WordPress API] Failed HTTP ${res.status} ${res.statusText} at ${url.pathname}`);
       return null;
     }
 
-    return (await res.json()) as T;
+    const data = (await res.json()) as T;
+    const count = Array.isArray(data) ? data.length : data ? 1 : 0;
+    console.log(`[WordPress API] Successfully parsed ${count} item(s) from ${url.pathname}`);
+
+    return data;
   } catch (error: any) {
     if (error?.name === 'AbortError') {
       console.warn(`[WordPress API] Request timed out (15s) for endpoint: ${endpoint}`);
@@ -79,4 +99,5 @@ export async function fetchWPData<T>({
     return null;
   }
 }
+
 
