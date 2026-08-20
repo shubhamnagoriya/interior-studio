@@ -38,7 +38,7 @@ export async function getTestimonials(): Promise<Testimonial[]> {
 
   const wpTestimonials = await fetchWPData<WPPost[]>({
     endpoint: 'testimonials',
-    query: { per_page: 100, status: 'publish' },
+    query: { per_page: 100 },
   });
 
   if (wpTestimonials === null || wpTestimonials.length === 0) {

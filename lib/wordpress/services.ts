@@ -53,7 +53,7 @@ export async function getServices(): Promise<Service[]> {
 
   const wpServices = await fetchWPData<WPPost[]>({
     endpoint: 'services',
-    query: { per_page: 100, status: 'publish' },
+    query: { per_page: 100 },
   });
 
   if (wpServices === null || wpServices.length === 0) {

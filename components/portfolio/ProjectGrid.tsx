@@ -42,6 +42,10 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
     });
   }, [projects, activeCategory]);
 
+  console.log(
+    `[ProjectGrid] Received: ${projects?.length || 0} projects, Filtered: ${filteredProjects?.length || 0} (Category: ${activeCategory})`
+  );
+
   if (!projects || projects.length === 0) {
     return (
       <div className="py-24 text-center px-margin-mobile">

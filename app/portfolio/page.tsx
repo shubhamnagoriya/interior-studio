@@ -12,6 +12,7 @@ export const revalidate = 60;
 
 export default async function PortfolioPage() {
   const projects = await getProjects();
+  console.log(`[PortfolioPage] rawProjects.length = ${projects.length}`);
 
   return (
     <div className="pt-32 md:pt-48 pb-section-gap">

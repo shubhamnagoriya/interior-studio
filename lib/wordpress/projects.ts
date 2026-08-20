@@ -116,17 +116,21 @@ export function mapWPProject(post: WPPost): Project {
  * Returns empty array on error or if no projects found to allow graceful UI empty states.
  */
 export async function getProjects(): Promise<Project[]> {
-  if (!getWordPressBaseUrl()) {
+  const baseUrl = getWordPressBaseUrl();
+  if (!baseUrl) {
     console.warn('[WordPress API] Base URL not configured.');
     return [];
   }
 
   const wpProjects = await fetchWPData<WPPost[]>({
     endpoint: 'projects',
-    query: { per_page: 100, status: 'publish' },
+    query: { per_page: 100 },
   });
 
-  if (wpProjects === null || wpProjects.length === 0) {
+  const rawCount = Array.isArray(wpProjects) ? wpProjects.length : 0;
+  console.log(`[Projects Service] rawProjects.length = ${rawCount}`);
+
+  if (!wpProjects || !Array.isArray(wpProjects) || wpProjects.length === 0) {
     return [];
   }
 
@@ -143,7 +147,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | undefine
 
   const wpProjects = await fetchWPData<WPPost[]>({
     endpoint: 'projects',
-    query: { slug, status: 'publish' },
+    query: { slug },
   });
 
   if (wpProjects && wpProjects.length > 0) {
@@ -159,11 +163,14 @@ export async function getProjectBySlug(slug: string): Promise<Project | undefine
  */
 export async function getFeaturedProjects(): Promise<Project[]> {
   const allProjects = await getProjects();
+  console.log(`[getFeaturedProjects] rawProjects.length = ${allProjects.length}`);
+
   if (allProjects.length === 0) return [];
 
   const explicitFeatured = allProjects.filter(
     (p) => p.featured === true || p.featuredProject === true
   );
+  console.log(`[getFeaturedProjects] featuredProjects.length = ${explicitFeatured.length}`);
 
   if (explicitFeatured.length >= 3) {
     return explicitFeatured.slice(0, 3);
